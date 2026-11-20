@@ -1,0 +1,124 @@
+/* Visual refresh. Loaded last, so it restyles the existing HUD without changing layout logic. */
+:root{
+ --card:linear-gradient(180deg,#fffbf1f5,#fbf2dcf0);--card-border:#ffffffc0;--ink:#24463a;--ink-soft:#647a68;
+ --accent:#2f6b52;--accent-2:#e2a644;--accent-3:#4f87a0;--shadow:0 10px 28px #17352a33,0 1px 0 #ffffffb3 inset;--radius:16px;
+}
+body,button,input,select{font-family:'Be Vietnam Pro','Segoe UI',sans-serif}
+.player-card,.clock-card,.quest-tracker,.family-hud,.school-hud,.minimap,.toolbar,.life-hud-head,.life-hud-list .suggestion{
+ background:var(--card);border:1px solid var(--card-border);box-shadow:var(--shadow);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.player-card,.clock-card{border-radius:var(--radius)}
+.player-name{color:var(--ink)}
+.meter>div{height:8px;background:#e2e3cf;box-shadow:inset 0 1px 2px #0000001a}
+.meter i{background-image:linear-gradient(90deg,#ffffff38,#ffffff00)!important}
+.clock-card b{color:var(--ink);font-variant-numeric:tabular-nums}
+.clock-card p span{color:#a87a2a}
+.weather-symbol{filter:drop-shadow(0 2px 3px #c99a4a55)}
+.brand b{letter-spacing:3px;color:#fff6dd;text-shadow:0 2px 6px #1d3b2e88}
+.brand span{color:#f3ead0;text-shadow:0 1px 4px #1d3b2e88}
+.location-chip{background:linear-gradient(180deg,#2f6b52f0,#24543ff0);border:1px solid #ffffff38;box-shadow:0 8px 22px #17352a40;backdrop-filter:blur(8px)}
+.location-chip .leave-home{margin-top:8px;font-size:11px;padding:7px 14px;border-radius:30px;background:#fff3d2;border-color:#f3dfa8}
+.quest-tracker{border-left:0;border-radius:var(--radius);padding:13px 16px 12px 20px;position:absolute;overflow:hidden}
+.quest-tracker:before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--accent-2),#d0743f)}
+.quest-tracker h3{color:var(--ink)}
+.quest-progress span{height:5px;border-radius:5px}
+.family-hud,.school-hud{border-radius:var(--radius)}
+.family-hud b{color:var(--accent)}
+.minimap{border-radius:var(--radius);border-width:1px}
+.minimap svg{border-radius:10px;box-shadow:inset 0 0 0 2px #ffffff80}
+/* Toolbar: icon tiles with keyboard chips */
+.toolbar{border-radius:20px;padding:7px;gap:4px}
+.toolbar button{border-radius:13px;transition:background .15s,transform .15s,box-shadow .15s}
+.toolbar button:hover{background:#ffffff;box-shadow:0 4px 12px #17352a22;transform:translateY(-3px)}
+.toolbar b{color:var(--accent);font-size:21px;height:29px}
+.toolbar span{font-weight:600;color:var(--ink-soft);letter-spacing:.2px}
+.toolbar kbd{top:4px;right:6px;color:#a98f5c}
+/* Interact button: glows when something is in reach */
+.interact{border-radius:18px;background:linear-gradient(180deg,#336f55,#24543f);border:1px solid #6ea283;box-shadow:0 10px 26px #17352a55}
+.interact:not(.inactive){animation:reach 1.8s ease-in-out infinite}
+.interact kbd{border-radius:10px;box-shadow:0 3px 0 #b8934c}
+.interact.inactive{background:linear-gradient(180deg,#58705fd9,#45594bd9)}
+@keyframes reach{0%,100%{box-shadow:0 10px 26px #17352a55,0 0 0 0 #ffd65a00}50%{box-shadow:0 10px 26px #17352a55,0 0 0 6px #ffd65a55}}
+/* Modal */
+.overlay{background:radial-gradient(circle at 50% 40%,#1c4a3a66,#0f2a2199)}
+.modal{border-radius:24px;border:1px solid #fff6dc;box-shadow:0 30px 90px #0c241b80;animation:pop .18s ease-out}
+.modal-heading{background:linear-gradient(135deg,#f4ead0,#fbf5e6 60%);border-bottom:1px solid #e7dcbc;position:sticky;top:0;z-index:2}
+.modal-heading h2{color:var(--ink)}
+.close{border-radius:50%;width:38px;height:38px;padding:0}
+.close:hover{background:#efe4c6}
+.finance-tabs{background:#efe7cf;padding:4px;border-radius:12px;gap:3px}
+.finance-tabs button{border:0;background:transparent;border-radius:9px}
+.finance-tabs .active{background:var(--accent);box-shadow:0 3px 8px #17352a33}
+button.primary{background:linear-gradient(180deg,#3a7a5e,#2c6149);border-color:#2c6149;box-shadow:0 4px 0 #1f4636}
+.toast{border-radius:14px;border:0;border-left:5px solid var(--accent-2);background:#fffaf0;box-shadow:0 14px 40px #17352a44;padding:14px 22px 14px 18px;animation:toastIn .25s ease-out;font-weight:500}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+@keyframes toastIn{from{transform:translate(-50%,12px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+/* School subjects */
+.subject-steps{display:flex;gap:6px;margin-bottom:14px}
+.subject-steps span{flex:1;text-align:center;font-size:12px;font-weight:700;padding:8px 4px;border-radius:10px;background:#ebe7d2;color:#8b927c}
+.subject-steps .now{background:var(--accent);color:#fff3cf;box-shadow:0 3px 8px #17352a33}
+.subject-steps .done{background:#d7e6cf;color:#4a7a55}
+.lesson-visual{font-size:40px;text-align:center;padding:14px;margin:12px 0 4px;background:#fffdf5;border-radius:14px;border:1px dashed #d8cfae;letter-spacing:4px}
+.school-lesson .choices button{font-size:15px;padding:14px 16px}
+@media(max-width:640px){.lesson-visual{font-size:30px}.toolbar b{font-size:18px;height:24px}}
+
+/* One current task, compact controls, and an unobstructed player view. */
+.brand,.controls{display:none}
+.hud{top:14px;left:16px;right:16px}
+.player-card{width:258px;padding:10px;gap:10px}
+.player-card .portrait{width:44px;min-width:44px;height:58px}
+.player-card .portrait span{left:5px}
+.player-name{font-size:14px;margin-bottom:5px}
+.clock-card{min-width:192px;padding:9px 12px}
+.clock-card b{font-size:22px}
+.family-hud{top:132px;left:16px;width:150px;padding:8px 12px}
+.family-hud span{display:none}
+.family-hud b{font-size:16px}
+.location-chip{top:14px;max-width:260px;padding:8px 16px;border-radius:12px}
+.location-chip small{display:none}
+.location-chip .leave-home{display:inline-block;margin:5px 0 0;padding:4px 10px;font-size:10px}
+.life-hud{top:132px;right:16px;width:235px}
+.life-hud-head{width:100%;text-align:left;padding:11px 13px;border-radius:12px}
+.life-hud-head b{font-size:14px;line-height:1.5;margin:6px 0}
+.life-hud-head span{font-size:11px;line-height:1.6}
+.daily-guide{width:100%;margin-top:5px;padding:7px 12px;background:#fff7e7;font-size:12px}
+.minimap{width:150px;bottom:112px;right:16px;padding:8px}
+.minimap>span{display:none}
+.bottom-hud{bottom:14px;left:16px;right:16px;justify-content:center;gap:12px}
+.toolbar{padding:4px;gap:2px;border-radius:14px}
+.toolbar button{min-width:58px;padding:7px 8px}
+.toolbar b{font-size:19px;height:25px}
+.interact{min-width:180px;max-width:235px;padding:9px;gap:9px}
+.interact kbd{font-size:16px;padding:5px 10px}
+.daily-steps{display:flex;gap:6px;margin:12px 0 18px;flex-wrap:wrap}
+.daily-steps span{padding:7px 10px;border-radius:8px;background:#e8e5d3;font-size:11px;color:#647a68}
+.daily-steps .current{background:#2f6b52;color:#fff7df;font-weight:700}
+.life-panel summary{cursor:pointer;font-weight:600;padding:10px 0}
+.map-modal{width:min(1000px,94vw)}
+.map-modal .modal-heading{padding:14px 20px}
+.map-modal .modal-content{padding:14px 20px}
+.map-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.map-controls button{padding:8px 12px;font-size:12px}
+.map-controls small{margin-left:auto;color:#647a68;font-size:11px}
+.big-map svg{display:block;aspect-ratio:1.6;max-height:58vh;background:#a8bd87;border:2px solid #e6dec2}
+@media(max-width:1000px){.location-chip{top:205px;left:16px;transform:none;max-width:210px}.life-hud{width:210px}.toolbar button{min-width:48px;padding:7px 6px}.interact{min-width:150px}}
+@media(max-width:640px){.hud{top:8px;left:8px;right:8px}.player-card{width:190px;padding:7px;gap:6px}.player-card .portrait{display:none}.player-name{font-size:13px}.clock-card{min-width:128px;padding:7px}.clock-card b{font-size:19px}.family-hud{display:none}.life-hud{top:112px;left:8px;right:auto;width:190px}.life-hud-head{padding:8px 10px}.life-hud-head b{font-size:12px}.life-hud-head span{font-size:10px}.location-chip{top:112px;left:auto;right:8px;max-width:140px;font-size:10px;padding:7px 9px}.minimap{width:112px;right:8px;bottom:148px}.bottom-hud{bottom:8px;left:8px;right:8px;gap:6px;flex-wrap:wrap}.toolbar{width:100%;order:2;justify-content:space-evenly}.toolbar button{min-width:0;flex:1;padding:6px 2px}.toolbar span{font-size:8px}.interact{width:200px;max-width:70vw}.map-modal .modal-content{padding:12px}.map-controls small{margin-left:0}.daily-steps span{font-size:10px}}
+@media(max-height:560px){.life-hud{top:105px}.life-hud-head span{display:none}.family-hud,.location-chip{display:none}.minimap{width:110px;bottom:100px}.big-map svg{max-height:48vh}}
+.story-card{padding:16px;margin:16px 0;border:1px solid #d5dcbf;border-radius:12px;background:#f0f3df}
+.story-card>small{font-size:10px;letter-spacing:1px;color:#69794e}
+.story-card h3{font-size:18px;margin:8px 0}
+.story-card p,.story-card li{font-size:13px;line-height:1.8}
+.story-card ul{padding-left:20px}
+.mission-current{border-left:4px solid #2f6b52;padding:12px;background:#edf1df;border-radius:8px}
+.mission-done{opacity:.65}
+.mission-locked{color:#71816b}
+.recovery-panel{padding:12px 0;border-top:1px solid #dedfc7;margin-top:14px}
+.recovery-panel summary{cursor:pointer;font-size:12px;color:#647a68}
+.subject-steps{flex-wrap:wrap}
+.subject-steps span{min-width:72px}
+.free-time-panel{padding:16px;margin:0 0 18px;background:#edf1df;border:1px solid #ced9bb;border-radius:12px}
+.free-time-panel>small{font-size:9px;letter-spacing:1px;color:#6d805c}
+.free-time-panel h3{font-size:17px;margin:8px 0}
+.free-time-panel p{font-size:12px;line-height:1.7;margin-bottom:10px}
+.free-time-options{display:grid;gap:6px;margin:10px 0}
+.free-time-options button{text-align:left;padding:10px 12px;font-size:12px}
+.free-time-options small{display:block;font-size:10px;font-weight:400;color:#6d805c;margin-top:4px}
